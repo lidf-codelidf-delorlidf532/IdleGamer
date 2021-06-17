@@ -17,7 +17,7 @@ class Upgrade {
         this.name = name
         this.purchaseEl = document.getElementById(`${name}Purchase`);
         this.labelEl = document.getElementById(`${name}Label`);
-        this.counterEl = document.getElementById(name);
+        this.counterEl = document.getElementById(`${name}`);
         this.price = price
         this.count = 0
         this.modReq = modReq
@@ -74,7 +74,9 @@ var viveUpgrade = new Upgrade("vive", 10000000000, 48828125000, 4096)
 var indexUpgrade = new Upgrade("index", 100000000000, 244140625000, 8192)
     //Update Score Function:
 var updateScore = function() {
-    scoreEl.textContent = `${score} Points`;
+    scoreEl.textContent = `
+                    $ { score }
+                    Points `;
     totalEl.textContent = totalScore;
     modEl.textContent = mod;
     rankEl.textContent = rank;
@@ -99,10 +101,15 @@ var updateScore = function() {
         modDisplayPrice = Math.round(modDisplayPrice / 1000000) + " M"
     }
     modLabelEl.textContent =
-        `Purchase a *2 multiplier\n${modDisplayPrice} points!`;
+        `
+                    Purchase a * 2 multiplier\ n$ { modDisplayPrice }
+                    points!`;
     for (var i = 0; i < allUpgrades.length; i++) {
         let upgrade = allUpgrades[i]
-        upgrade.labelEl.textContent = `Purchase a ${upgrade.name}\n${upgrade.price} points!`;
+        upgrade.labelEl.textContent = `
+                    Purchase a $ { upgrade.name }\
+                    n$ { upgrade.price }
+                    points!`;
     }
 
     var scoreDisplay = score
@@ -118,8 +125,8 @@ var updateScore = function() {
         scoreDisplay = Math.round(scoreDisplay / 1000000) + " M"
     }
     document.title = `
-        Idle Gamer - ${ scoreDisplay }
-        Points `
+                    Idle Gamer - $ { scoreDisplay }
+                    Points `
 };
 //All Functions:
 var resetGame = function() {

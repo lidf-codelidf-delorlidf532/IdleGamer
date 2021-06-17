@@ -5,14 +5,6 @@ const scoreEl = document.getElementById("score");
 const modEl = document.getElementById("mod");
 const rankEl = document.getElementById("rank");
 const resetEl = document.getElementById("reset");
-const consoleEl = document.getElementById("console");
-const phoneEl = document.getElementById("phone");
-const laptopEl = document.getElementById("laptop");
-const mouseEl = document.getElementById("mouse");
-const keyboardEl = document.getElementById("keyboard");
-const monitorEl = document.getElementById("monitor");
-const headsetEl = document.getElementById("headset");
-const desktopEl = document.getElementById("desktop");
 const phoneVREl = document.getElementById("phoneVR");
 const psvrEl = document.getElementById("psvr");
 const quest2El = document.getElementById("quest2");
@@ -25,29 +17,6 @@ const modPurchaseEl = document.getElementById("modPurchase");
 const modLabelEl = document.getElementById("modLabel");
 const rankPurchaseEl = document.getElementById("rankPurchase");
 const rankLabelEl = document.getElementById("rankLabel")
-const consolePurchaseEl = document.getElementById("consolePurchase");
-const consoleLabelEl = document.getElementById("consoleLabel");
-
-const phonePurchaseEl = document.getElementById("phonePurchase");
-const phoneLabelEl = document.getElementById("phoneLabel");
-
-const laptopPurchaseEl = document.getElementById("laptopPurchase");
-const laptopLabelEl = document.getElementById("laptopLabel");
-
-const mousePurchaseEl = document.getElementById("mousePurchase");
-const mouseLabelEl = document.getElementById("mouseLabel");
-
-const keyboardPurchaseEl = document.getElementById("keyboardPurchase");
-const keyboardLabelEl = document.getElementById("keyboardLabel");
-
-const monitorPurchaseEl = document.getElementById("monitorPurchase");
-const monitorLabelEl = document.getElementById("monitorLabel");
-
-const headsetPurchaseEl = document.getElementById("headsetPurchase");
-const headsetLabelEl = document.getElementById("headsetLabel");
-
-const desktopPurchaseEl = document.getElementById("desktopPurchase");
-const desktopLabelEl = document.getElementById("desktopLabel");
 
 const phoneVRPurchaseEl = document.getElementById("phoneVRPurchase");
 const phoneVRLabelEl = document.getElementById("phoneVRLabel");
@@ -70,27 +39,11 @@ var mod = 1;
 var rank = "No";
 var time = 1600;
 var resets = 0;
-var phones = 0;
-var consoles = 0;
-var laptops = 0;
-var mice = 0;
-var keyboards = 0;
-var monitors = 0;
-var headsets = 0;
-var desktops = 0;
 var phoneVRs = 0;
 var psvrs = 0;
 var quest2s = 0;
 var vives = 0;
 var indexes = 0;
-var phonePrice = 1000;
-var consolePrice = 5000;
-var laptopPrice = 25000;
-var mousePrice = 125000;
-var keyboardPrice = 625000;
-var monitorPrice = 3125000;
-var headsetPrice = 15625000;
-var desktopPrice = 78125000;
 var phoneVRPrice = 390625000;
 var psvrPrice = 1953125000;
 var quest2Price = 9765625000;

@@ -81,10 +81,10 @@ var updateScore = function() {
     modEl.textContent = mod;
     rankEl.textContent = rank;
     resetEl.textContent = resets;
-    for (var i = 0; i < allUpgrades.length; i++) {
+    /*for (var i = 0; i < allUpgrades.length; i++) {
         let upgrade = allUpgrades[i]
         upgrade.counterEl.textContent = upgrade.count;
-    }
+    }*/
     upgradesEl.textContent = upgrades;
     var currentTime = new Date().getTime();
     localStorage.setItem("time", currentTime);
@@ -104,13 +104,13 @@ var updateScore = function() {
         `
                     Purchase a * 2 multiplier\ n${ modDisplayPrice }
                     points!`;
-    for (var i = 0; i < allUpgrades.length; i++) {
+    /*for (var i = 0; i < allUpgrades.length; i++) {
         let upgrade = allUpgrades[i]
         upgrade.labelEl.textContent = `
                     Purchase a ${ upgrade.name }\
                     n${ upgrade.price }
                     points!`;
-    }
+    }*/
 
     var scoreDisplay = score
     if (scoreDisplay > 1000000000000000000) {

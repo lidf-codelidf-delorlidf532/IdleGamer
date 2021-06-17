@@ -100,7 +100,15 @@ var upgrades = 0;
 var totalScore = 0;
 
 var allUpgrades = [];
-var cursorUpgrade = new Upgrade("cursor")
+var cursorUpgrade = new Upgrade("cursor", 1, 100)
+var phoneUpgrade = new Upgrade("phone", 1, 1000, 2, phoneVRUpgrade, 5)
+var consoleUpgrade = new Upgrade("console", 10, 5000, 4, psvrUpgrade, 5)
+var laptopUpgrade = new Upgrade("laptop", 100, 25000, 8, quest2Upgrade, 10)
+var mouseUpgrade = new Upgrade("mouse", 1000, 125000, 16, viveUpgrade, 20)
+var keyboardUpgrade = new Upgrade("keyboard", 10000, 625000, 32, viveUpgrade, 20)
+var monitorUpgrade = new Upgrade("monitor", 100000, 3125000, 64, indexUpgrade, 50)
+var headsetUpgrade = new Upgrade("headset", 1000000, 15625000, 128, indexUpgrade, 50)
+var desktopUpgrade = new Upgrade("desktop", 10000000, 78125000, 256, indexUpgrade, 50)
     //Update Score Function:
 var updateScore = function() {
     totalScore = score;
@@ -109,15 +117,10 @@ var updateScore = function() {
     modEl.textContent = mod;
     rankEl.textContent = rank;
     resetEl.textContent = resets;
-    cursorUpgrade.counterEl.textContent = cursorUpgrade.count
-    consoleEl.textContent = consoles;
-    phoneEl.textContent = phones;
-    laptopEl.textContent = laptops;
-    mouseEl.textContent = mice;
-    keyboardEl.textContent = keyboards;
-    monitorEl.textContent = monitors;
-    headsetEl.textContent = headsets;
-    desktopEl.textContent = desktops;
+    for (var i = 0; i < allUpgrades.length; i++) {
+        let upgrade = allUpgrades[i]
+        upgrade.counterEl.textContent = upgrade.count;
+    }
     phoneVREl.textContent = phoneVRs;
     psvrEl.textContent = psvrs;
     quest2El.textContent = quest2s;
@@ -139,16 +142,11 @@ var updateScore = function() {
         modDisplayPrice = Math.round(modDisplayPrice / 1000000) + " M"
     }
     modLabelEl.textContent =
-        "Purchase a *2 multiplier\n" + modDisplayPrice + " points!";
-    cursorUpgrade.labelEl.textContent = `Purchase a cursor\n${cursorUpgrade.price} points!`;
-    phoneLabelEl.textContent = `Purchase a phone\n${phonePrice} points!`;
-    consoleLabelEl.textContent = `Purchase a console\n${consolePrice} points!`;
-    laptopLabelEl.textContent = `Purchase a laptop\n${laptopPrice} points!`;
-    mouseLabelEl.textContent = `Purchase a mouse\n${mousePrice} points!`;
-    keyboardLabelEl.textContent = `Purchase a keyboard\n${keyboardPrice} points!`;
-    monitorLabelEl.textContent = `Purchase a monitor\n${monitorPrice} points!`;
-    headsetLabelEl.textContent = `Purchase a headset\n${headsetPrice} points!`;
-    desktopLabelEl.textContent = `Purchase a desktop\n${desktopPrice} points!`;
+        `Purchase a *2 multiplier\n${modDisplayPrice} points!`;
+    for (var i = 0; i < allUpgrades.length; i++) {
+        let upgrade = allUpgrades[i]
+        upgrade.labelEl.textContent = `Purchase a ${upgrade.name}\n${upgrade.price} points!`;
+    }
     phoneVRLabelEl.textContent =
         `Purchase a phone VR headset\n${phoneVRPrice} points!`;
     psvrLabelEl.textContent =
@@ -210,115 +208,24 @@ var resetGame = function() {
     indexPrice = 244140625000;
     upgrades = 0;
     totalScore = 0;
+
+    cursorUpgrade =
 }
 var saveGame = function() {
-    var saveCode =
-        score +
-        "/" +
-        mod +
-        "/" +
-        rank +
-        "/" +
-        resets +
-        "/" +
-        phones +
-        "/" +
-        consoles +
-        "/" +
-        laptops +
-        "/" +
-        mice +
-        "/" +
-        keyboards +
-        "/" +
-        monitors +
-        "/" +
-        headsets +
-        "/" +
-        desktops +
-        "/" +
-        phoneVRs +
-        "/" +
-        psvrs +
-        "/" +
-        quest2s +
-        "/" +
-        vives +
-        "/" +
-        indexes +
-        "/" +
-        time +
-        "/" +
-        upgrades +
-        "/" +
-        cursors +
-        "/" +
-        cursorPrice +
-        "/" +
-        phonePrice +
-        "/" +
-        consolePrice +
-        "/" +
-        laptopPrice +
-        "/" +
-        mousePrice +
-        "/" +
-        keyboardPrice +
-        "/" +
-        monitorPrice +
-        "/" +
-        headsetPrice +
-        "/" +
-        desktopPrice +
-        "/" +
-        phoneVRPrice +
-        "/" +
-        psvrPrice +
-        "/" +
-        quest2Price +
-        "/" +
-        vivePrice +
-        "/" +
-        indexPrice;
+    var saveCode = score + "/" + mod + "/" + rank + "/" + resets
+    for (var i = 0; i < allUpgrades.length; i++) {
+        let upgrade = allUpgrades[i]
+        saveCode = saveCode + "/" + upgrade
+    }
     localStorage.setItem("save", saveCode);
 };
 var loadGame = function() {
     var loadCode = localStorage.getItem("save");
+    console.log(loadCode)
     var data = loadCode.split("/");
-    score = parseInt(data[0]);
-    mod = parseInt(data[1]);
-    rank = data[2];
-    resets = parseInt(data[3]);
-    phones = parseInt(data[4]);
-    consoles = parseInt(data[5]);
-    laptops = parseInt(data[6]);
-    mice = parseInt(data[7]);
-    keyboards = parseInt(data[8]);
-    monitors = parseInt(data[9]);
-    headsets = parseInt(data[10]);
-    desktops = parseInt(data[11]);
-    phoneVRs = parseInt(data[12]);
-    psvrs = parseInt(data[13]);
-    quest2s = parseInt(data[14]);
-    vives = parseInt(data[15]);
-    indexes = parseInt(data[16]);
-    time = parseInt(data[17]);
-    upgrades = parseInt(data[18]);
-    cursors = parseInt(data[19]);
-    cursorPrice = parseInt(data[20])
-    phonePrice = parseInt(data[21])
-    consolePrice = parseInt(data[22])
-    laptopPrice = parseInt(data[23])
-    mousePrice = parseInt(data[24])
-    keyboardPrice = parseInt(data[25])
-    monitorPrice = parseInt(data[26])
-    headsetPrice = parseInt(data[27])
-    desktopPrice = parseInt(data[28])
-    phoneVRPrice = parseInt(data[29])
-    psvrPrice = parseInt(data[30])
-    quest2Price = parseInt(data[31])
-    vivePrice = parseInt(data[32])
-    indexPrice = parseInt(data[33])
+    for (var i = 0; i < allUpgrades.length; i++) {
+        allUpgrades[i] = data[i]
+    }
     if (isNaN(score)) {
         alert("New save detected! Welcome to Idle Gamer!")
         resetGame()
@@ -336,7 +243,7 @@ var loadGame = function() {
 };
 //All Classes
 class Upgrade() {
-        constructor(name, value, price, modReq, modifier = 'none', modifierMult = 0) {
+        constructor(name, value, price, modReq = 0, modifier = 'none', modifierMult = 0) {
             this.name = name
             this.purchaseEl = document.getElementById(`${name}Purchase`);
             this.labelEl = document.getElementById(`${name}Label`);
@@ -364,7 +271,7 @@ class Upgrade() {
         }
         onClick() {
             if (this.modifier > 0 && this.modifier !== 'none') {
-                score += this.value * this.count * (this.modifierMult * this.modifier);
+                score += this.value * this.count * (this.modifierMult * this.modifier.count);
             } else {
                 score += this.value * this.count;
             }
@@ -570,24 +477,7 @@ var onRankPurchase = function() {
         rank === "Streamer with Donations"
     ) {
         resets++;
-        score = 0;
-        mod = Math.round(resets / 2) * 2;
-        rank = "No";
-        time /= 2;
-        consoles = 0;
-        phones = 0;
-        laptops = 0;
-        mice = 0;
-        keyboards = 0;
-        monitors = 0;
-        headsets = 0;
-        desktops = 0;
-        phoneVRs = 0;
-        psvrs = 0;
-        quest2s = 0;
-        vives = 0;
-        indexes = 0;
-        rankLabelEl.textContent = "Rank up\n" + 1220703125000 * 5 + " points!";
+        resetGame()
         window.clearInterval(clickAll);
         window.setInterval(clickAll, time);
     } else {
@@ -707,19 +597,8 @@ var detectClick = function(el, func) {
 };
 for (var i = 0; i < allUpgrades.length; i++) {
     let upgrade = allUpgrades[i]
-    detectClick(upgrade.purchaseEl, upgrade.onPurchase)
+    upgrade.purchaseEl.addEventListener("click", upgrade.onPurchase)
 }
-detectClick(controllerEl, onControllerClick);
-detectClick(modPurchaseEl, onModPurchase);
-detectClick(rankPurchaseEl, onRankPurchase);
-detectClick(phonePurchaseEl, onPhonePurchase);
-detectClick(consolePurchaseEl, onConsolePurchase);
-detectClick(laptopPurchaseEl, onLaptopPurchase);
-detectClick(mousePurchaseEl, onMousePurchase);
-detectClick(keyboardPurchaseEl, onKeyboardPurchase);
-detectClick(monitorPurchaseEl, onMonitorPurchase);
-detectClick(headsetPurchaseEl, onHeadsetPurchase);
-detectClick(desktopPurchaseEl, onDesktopPurchase);
 detectClick(phoneVRPurchaseEl, onPhoneVRPurchase);
 detectClick(psvrPurchaseEl, onPSVRPurchase);
 detectClick(quest2PurchaseEl, onQuest2Purchase);

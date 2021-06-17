@@ -5,7 +5,6 @@ const scoreEl = document.getElementById("score");
 const modEl = document.getElementById("mod");
 const rankEl = document.getElementById("rank");
 const resetEl = document.getElementById("reset");
-const cursorEl = document.getElementById("cursor");
 const consoleEl = document.getElementById("console");
 const phoneEl = document.getElementById("phone");
 const laptopEl = document.getElementById("laptop");
@@ -26,8 +25,6 @@ const modPurchaseEl = document.getElementById("modPurchase");
 const modLabelEl = document.getElementById("modLabel");
 const rankPurchaseEl = document.getElementById("rankPurchase");
 const rankLabelEl = document.getElementById("rankLabel")
-const cursorPurchaseEl = document.getElementById("cursorPurchase");
-const cursorLabelEl = document.getElementById("cursorLabel");
 const consolePurchaseEl = document.getElementById("consolePurchase");
 const consoleLabelEl = document.getElementById("consoleLabel");
 
@@ -73,7 +70,6 @@ var mod = 1;
 var rank = "No";
 var time = 1600;
 var resets = 0;
-var cursors = 0;
 var phones = 0;
 var consoles = 0;
 var laptops = 0;
@@ -87,7 +83,6 @@ var psvrs = 0;
 var quest2s = 0;
 var vives = 0;
 var indexes = 0;
-var cursorPrice = 100;
 var phonePrice = 1000;
 var consolePrice = 5000;
 var laptopPrice = 25000;
@@ -104,7 +99,9 @@ var indexPrice = 244140625000;
 var upgrades = 0;
 var totalScore = 0;
 
-//Update Score Function:
+var allUpgrades = [];
+var cursorUpgrade = new Upgrade("cursor")
+    //Update Score Function:
 var updateScore = function() {
     totalScore = score;
     scoreEl.textContent = `${score} Points`;
@@ -112,7 +109,7 @@ var updateScore = function() {
     modEl.textContent = mod;
     rankEl.textContent = rank;
     resetEl.textContent = resets;
-    cursorEl.textContent = cursors;
+    cursorUpgrade.counterEl.textContent = cursorUpgrade.count
     consoleEl.textContent = consoles;
     phoneEl.textContent = phones;
     laptopEl.textContent = laptops;
@@ -143,7 +140,7 @@ var updateScore = function() {
     }
     modLabelEl.textContent =
         "Purchase a *2 multiplier\n" + modDisplayPrice + " points!";
-    cursorLabelEl.textContent = `Purchase a cursor\n${cursorPrice} points!`;
+    cursorUpgrade.labelEl.textContent = `Purchase a cursor\n${cursorUpgrade.price} points!`;
     phoneLabelEl.textContent = `Purchase a phone\n${phonePrice} points!`;
     consoleLabelEl.textContent = `Purchase a console\n${consolePrice} points!`;
     laptopLabelEl.textContent = `Purchase a laptop\n${laptopPrice} points!`;
@@ -185,7 +182,6 @@ var resetGame = function() {
     rank = "No";
     time = 1600;
     resets = 0;
-    cursors = 0;
     phones = 0;
     consoles = 0;
     laptops = 0;
@@ -199,7 +195,6 @@ var resetGame = function() {
     quest2s = 0;
     vives = 0;
     indexes = 0;
-    cursorPrice = 100;
     phonePrice = 1000;
     consolePrice = 5000;
     laptopPrice = 25000;
@@ -339,7 +334,44 @@ var loadGame = function() {
     }
     updateScore();
 };
-//All Purchase Functions:
+//All Classes
+class Upgrade() {
+        constructor(name, value, price, modReq, modifier = 'none', modifierMult = 0) {
+            this.name = name
+            this.purchaseEl = document.getElementById(`${name}Purchase`);
+            this.labelEl = document.getElementById(`${name}Label`);
+            this.counterEl = document.getElementById(name);
+            this.price = price
+            this.count = 0
+            this.modReq = modReq
+            this.value = value
+            this.modifier = modifier
+            this.modifierMult = modifierMult
+            allUpgrades.push(this)
+        }
+        onPurchase() {
+            if (score >= this.price && mod >= this.modReq) {
+                phones++;
+                score -= this.price;
+                this.price *= 1.2
+                this.price = Math.round(this.price)
+                upgrades++;
+            } else if (score < this.price) {
+                alert("You don't have enough money!");
+            } else if (mod < this.modReq) {
+                alert("Your multiplier isn't high enough! You need a multplier of 2!");
+            }
+        }
+        onClick() {
+            if (this.modifier > 0 && this.modifier !== 'none') {
+                score += this.value * this.count * (this.modifierMult * this.modifier);
+            } else {
+                score += this.value * this.count;
+            }
+            updateScore();
+        }
+    }
+    //All Purchase Functions:
 var onModPurchase = function() {
     if (score >= mod * mod * 200) {
         score -= mod * mod * 200;
@@ -348,17 +380,6 @@ var onModPurchase = function() {
         alert("You don't have enough money!");
     }
     updateScore();
-};
-var onCursorPurchase = function() {
-    if (score >= cursorPrice) {
-        cursors++;
-        score -= cursorPrice;
-        cursorPrice *= 1.03571429;
-        cursorPrice = Math.round(cursorPrice)
-        upgrades++;
-    } else if (score < cursorPrice) {
-        alert("You don't have enough money!");
-    }
 };
 
 var onPhonePurchase = function() {
@@ -615,9 +636,12 @@ var onControllerClick = function() {
     updateScore();
     saveGame();
 };
-var onCursorClick = function() {
-    score += 1 * mod * cursors;
-    totalScore += 1 * mod * cursors;
+var onPhoneClick = function() {
+    if (phoneVRs > 0) {
+        score += 1 * phones * (5 * phoneVRs);
+    } else {
+        score += 1 * phones;
+    }
     updateScore();
 };
 var onConsoleClick = function() {
@@ -625,14 +649,6 @@ var onConsoleClick = function() {
         score += 10 * consoles * (5 * psvrs);
     } else {
         score += 10 * consoles;
-    }
-    updateScore();
-};
-var onPhoneClick = function() {
-    if (phoneVRs > 0) {
-        score += 1 * phones * (5 * phoneVRs);
-    } else {
-        score += 1 * phones;
     }
     updateScore();
 };
@@ -689,10 +705,13 @@ var onDesktopClick = function() {
 var detectClick = function(el, func) {
     el.addEventListener("click", func);
 };
+for (var i = 0; i < allUpgrades.length; i++) {
+    let upgrade = allUpgrades[i]
+    detectClick(upgrade.purchaseEl, upgrade.onPurchase)
+}
 detectClick(controllerEl, onControllerClick);
 detectClick(modPurchaseEl, onModPurchase);
 detectClick(rankPurchaseEl, onRankPurchase);
-detectClick(cursorPurchaseEl, onCursorPurchase);
 detectClick(phonePurchaseEl, onPhonePurchase);
 detectClick(consolePurchaseEl, onConsolePurchase);
 detectClick(laptopPurchaseEl, onLaptopPurchase);
@@ -725,6 +744,10 @@ var checkBG = function() {
 var clickAll = function() {
     for (var i = 0; i < resets * 2 + 1; i++) {
         if (upgrades > 0) {
+            for (var i = 0; i < allUpgrades.length; i++) {
+                let upgrade = allUpgrades[i]
+                upgrade.onClick();
+            }
             onCursorClick();
             onConsoleClick();
             onPhoneClick();

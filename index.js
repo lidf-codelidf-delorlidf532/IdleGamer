@@ -81,10 +81,6 @@ var updateScore = function() {
     modEl.textContent = mod;
     rankEl.textContent = rank;
     resetEl.textContent = resets;
-    for (var i = 0; i < allUpgrades.length; i++) {
-        let upgrade = allUpgrades[i]
-        upgrade.counterEl.textContent = upgrade.count;
-    }
     cursorUpgrade.counterEl.textContent = cursorUpgrade.count;
     phoneUpgrade.counterEl.textContent = phoneUpgrade.count;
     consoleUpgrade.counterEl.textContent = consoleUpgrade.count;

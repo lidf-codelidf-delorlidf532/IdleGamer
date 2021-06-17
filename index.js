@@ -207,43 +207,43 @@ var loadGame = function() {
     updateScore();
 };
 //All Classes
-class Upgrade() {
-        constructor(name, value, price, modReq = 0, modifier = 'none', modifierMult = 0) {
-            this.name = name
-            this.purchaseEl = document.getElementById(`${name}Purchase`);
-            this.labelEl = document.getElementById(`${name}Label`);
-            this.counterEl = document.getElementById(name);
-            this.price = price
-            this.count = 0
-            this.modReq = modReq
-            this.value = value
-            this.modifier = modifier
-            this.modifierMult = modifierMult
-            allUpgrades.push(this)
-        }
-        onPurchase() {
-            if (score >= this.price && mod >= this.modReq) {
-                phones++;
-                score -= this.price;
-                this.price *= 1.2
-                this.price = Math.round(this.price)
-                upgrades++;
-            } else if (score < this.price) {
-                alert("You don't have enough money!");
-            } else if (mod < this.modReq) {
-                alert("Your multiplier isn't high enough! You need a multplier of 2!");
-            }
-        }
-        onClick() {
-            if (this.modifier > 0 && this.modifier !== 'none') {
-                score += this.value * this.count * (this.modifierMult * this.modifier.count);
-            } else {
-                score += this.value * this.count;
-            }
-            updateScore();
+class Upgrade {
+    constructor(name, value, price, modReq = 0, modifier = 'none', modifierMult = 0) {
+        this.name = name
+        this.purchaseEl = document.getElementById(`${name}Purchase`);
+        this.labelEl = document.getElementById(`${name}Label`);
+        this.counterEl = document.getElementById(name);
+        this.price = price
+        this.count = 0
+        this.modReq = modReq
+        this.value = value
+        this.modifier = modifier
+        this.modifierMult = modifierMult
+        allUpgrades.push(this)
+    }
+    onPurchase() {
+        if (score >= this.price && mod >= this.modReq) {
+            phones++;
+            score -= this.price;
+            this.price *= 1.2
+            this.price = Math.round(this.price)
+            upgrades++;
+        } else if (score < this.price) {
+            alert("You don't have enough money!");
+        } else if (mod < this.modReq) {
+            alert("Your multiplier isn't high enough! You need a multplier of 2!");
         }
     }
-    //All Purchase Functions:
+    onClick() {
+        if (this.modifier > 0 && this.modifier !== 'none') {
+            score += this.value * this.count * (this.modifierMult * this.modifier.count);
+        } else {
+            score += this.value * this.count;
+        }
+        updateScore();
+    }
+}
+//All Purchase Functions:
 var onModPurchase = function() {
     if (score >= mod * mod * 200) {
         score -= mod * mod * 200;
@@ -325,7 +325,53 @@ var onIndexPurchase = function() {
     updateScore();
 };
 var onRankPurchase = function() {
-
+    if (
+        score >= 1220703125000 * 5 * 5 * 5 &&
+        mod >= 262144 &&
+        rank === "Streamer with Donations"
+    ) {
+        resets++;
+        resetGame()
+        window.clearInterval(clickAll);
+        window.setInterval(clickAll, time);
+    } else {
+        if (
+            score >= 1220703125000 * 5 * 5 &&
+            mod >= 131072 &&
+            indexes > 0 &&
+            rank === "Twitch Streamer"
+        ) {
+            rank = "Streamer with Donations";
+            score -= 1220703125000 * 5 * 5;
+            rankLabelEl.textContent =
+                "Reset\n" + 1220703125000 * 5 * 5 * 5 + " points!";
+        } else {
+            if (
+                score >= 1220703125000 * 5 &&
+                mod >= 65536 &&
+                desktops > 0 &&
+                rank === "Youtuber"
+            ) {
+                rank = "Twitch Streamer";
+                score -= 1220703125000 * 5;
+                rankLabelEl.textContent =
+                    "Rank up\n" + 1220703125000 * 5 * 5 + " points!";
+            } else {
+                if (
+                    score >= 1220703125000 &&
+                    mod >= 32768 &&
+                    laptops > 0 &&
+                    rank === "No"
+                ) {
+                    rank = "Youtuber";
+                    score -= 1220703125000;
+                    rankLabelEl.textContent =
+                        "Rank up\n" + 1220703125000 * 5 + " points!";
+                }
+            }
+        }
+    }
+    updateScore();
 };
 //All Click Functions:
 var onControllerClick = function() {

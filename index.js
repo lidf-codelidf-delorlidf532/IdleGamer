@@ -59,6 +59,11 @@ var totalScore = 0;
 
 var allUpgrades = [];
 const cursorUpgrade = new Upgrade("cursor", 1, 100)
+const phoneVRUpgrade = new Upgrade("phoneVR", 100000000, 390625000, 512)
+const psvrUpgrade = new Upgrade("psvr", 100000000, 1953125000, 1024)
+const quest2Upgrade = new Upgrade("quest2", 1000000000, 9765625000, 2048)
+const viveUpgrade = new Upgrade("vive", 10000000000, 48828125000, 4096)
+const indexUpgrade = new Upgrade("index", 100000000000, 244140625000, 8192)
 const phoneUpgrade = new Upgrade("phone", 1, 1000, 2, phoneVRUpgrade, 5)
 const consoleUpgrade = new Upgrade("console", 10, 5000, 4, psvrUpgrade, 5)
 const laptopUpgrade = new Upgrade("laptop", 100, 25000, 8, quest2Upgrade, 10)
@@ -67,11 +72,6 @@ const keyboardUpgrade = new Upgrade("keyboard", 10000, 625000, 32, viveUpgrade, 
 const monitorUpgrade = new Upgrade("monitor", 100000, 3125000, 64, indexUpgrade, 50)
 const headsetUpgrade = new Upgrade("headset", 1000000, 15625000, 128, indexUpgrade, 50)
 const desktopUpgrade = new Upgrade("desktop", 10000000, 78125000, 256, indexUpgrade, 50)
-const phoneVRUpgrade = new Upgrade("phoneVR", 100000000, 390625000, 512)
-const psvrUpgrade = new Upgrade("psvr", 100000000, 1953125000, 1024)
-const quest2Upgrade = new Upgrade("quest2", 1000000000, 9765625000, 2048)
-const viveUpgrade = new Upgrade("vive", 10000000000, 48828125000, 4096)
-const indexUpgrade = new Upgrade("index", 100000000000, 244140625000, 8192)
     //Update Score Function:
 var updateScore = function() {
     scoreEl.textContent = `

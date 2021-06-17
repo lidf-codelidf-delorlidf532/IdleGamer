@@ -232,7 +232,8 @@ for (var i = 0; i < allUpgrades.length; i++) {
     upgrade.purchaseEl.addEventListener("click", upgrade.onPurchase)
 }
 window.addEventListener("load", updateScore);
-//All Intervals:
+controllerEl.addEventListener("click", onControllerClick)
+    //All Intervals:
 
 
 var checkBG = function() {

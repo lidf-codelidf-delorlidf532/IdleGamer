@@ -102,13 +102,12 @@ var updateScore = function() {
     }
     modLabelEl.textContent =
         `
-                    Purchase a * 2 multiplier\ n${ modDisplayPrice }
+                    Purchase a * 2 multiplier\n${ modDisplayPrice }
                     points!`;
     /*for (var i = 0; i < allUpgrades.length; i++) {
         let upgrade = allUpgrades[i]
         upgrade.labelEl.textContent = `
-                    Purchase a ${ upgrade.name }\
-                    n${ upgrade.price }
+                    Purchase a ${ upgrade.name }\n${ upgrade.price }
                     points!`;
     }*/
 

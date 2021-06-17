@@ -678,3 +678,4 @@ logMessage();
 logMessage();
 logMessage();
 logMessage();
+updateScore();

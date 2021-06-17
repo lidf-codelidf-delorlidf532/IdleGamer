@@ -72,10 +72,6 @@ var psvrUpgrade = new Upgrade("psvr", 100000000, 1953125000, 1024)
 var quest2Upgrade = new Upgrade("quest2", 1000000000, 9765625000, 2048)
 var viveUpgrade = new Upgrade("vive", 10000000000, 48828125000, 4096)
 var indexUpgrade = new Upgrade("index", 100000000000, 244140625000, 8192)
-    //All Functions:
-var resetGame = function() {
-        score = 0;
-    }
     //Update Score Function:
 var updateScore = function() {
     scoreEl.textContent = `
@@ -85,10 +81,11 @@ var updateScore = function() {
     modEl.textContent = mod;
     rankEl.textContent = rank;
     resetEl.textContent = resets;
-    for (var i = 0; i < allUpgrades.length; i++) {
+    /*for (var i = 0; i < allUpgrades.length; i++) {
         let upgrade = allUpgrades[i]
         upgrade.counterEl.textContent = upgrade.count;
-    }
+    }*/
+    cursorUpgrade.counterEl.textContent = cursorUpgrade.count;
     upgradesEl.textContent = upgrades;
     var currentTime = new Date().getTime();
     localStorage.setItem("time", currentTime);
@@ -132,6 +129,10 @@ var updateScore = function() {
                     Idle Gamer - $ { scoreDisplay }
                     Points `
 };
+//All Functions:
+var resetGame = function() {
+    score = 0;
+}
 var saveGame = function() {
     var saveCode = score + "/" + mod + "/" + rank + "/" + resets
     for (var i = 0; i < allUpgrades.length; i++) {

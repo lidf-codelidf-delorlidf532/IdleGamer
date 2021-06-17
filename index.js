@@ -325,53 +325,7 @@ var onIndexPurchase = function() {
     updateScore();
 };
 var onRankPurchase = function() {
-    if (
-        score >= 1220703125000 * 5 * 5 * 5 &&
-        mod >= 262144 &&
-        rank === "Streamer with Donations"
-    ) {
-        resets++;
-        resetGame()
-        window.clearInterval(clickAll);
-        window.setInterval(clickAll, time);
-    } else {
-        if (
-            score >= 1220703125000 * 5 * 5 &&
-            mod >= 131072 &&
-            indexes > 0 &&
-            rank === "Twitch Streamer"
-        ) {
-            rank = "Streamer with Donations";
-            score -= 1220703125000 * 5 * 5;
-            rankLabelEl.textContent =
-                "Reset\n" + 1220703125000 * 5 * 5 * 5 + " points!";
-        } else {
-            if (
-                score >= 1220703125000 * 5 &&
-                mod >= 65536 &&
-                desktops > 0 &&
-                rank === "Youtuber"
-            ) {
-                rank = "Twitch Streamer";
-                score -= 1220703125000 * 5;
-                rankLabelEl.textContent =
-                    "Rank up\n" + 1220703125000 * 5 * 5 + " points!";
-            } else {
-                if (
-                    score >= 1220703125000 &&
-                    mod >= 32768 &&
-                    laptops > 0 &&
-                    rank === "No"
-                ) {
-                    rank = "Youtuber";
-                    score -= 1220703125000;
-                    rankLabelEl.textContent =
-                        "Rank up\n" + 1220703125000 * 5 + " points!";
-                }
-            }
-        }
-    }
-    updateScore();
+
 };
 //All Click Functions:
 var onControllerClick = function() {

@@ -8,6 +8,9 @@ const resetEl = document.getElementById("reset");
 
 const controllerEl = document.getElementById("controller");
 
+const modLabelEl = document.getElementById("modLabel")
+const modPurchaseEl = document.getElementById("modPurchase")
+
 //Upgrade Constructor:
 class Upgrade {
     constructor(name, value, price, modReq = 0, modifier = 'none', modifierMult = 0) {
@@ -228,11 +231,11 @@ window.addEventListener("load", updateScore);
 
 var checkBG = function() {
     document.body.style.backgroundImage = "url('https://th.bing.com/th/id/R19baa1a5815a5b3181c319bee2c8aa12?rik=koHq4MzSlxaPOQ&pid=ImgRaw');"
-    if (mice > 0) {
+    if (mouseUpgrade.count > 0) {
         document.body.style.backgroundImage = "url('https://th.bing.com/th/id/R23311f3a9b4d887b9519bd35456fc18c?rik=8%2bzm81o%2bWkY91w&riu=http%3a%2f%2fcdn.decoist.com%2fwp-content%2fuploads%2f2012%2f04%2fsmall-dorm-room-design-idea.jpg&ehk=IPglkeabJqNjJr1T5iPU%2fiRzkZAhkuj9IMzF5%2bNNJvg%3d&risl=&pid=ImgRaw')"
-        if (headsets > 0) {
+        if (headsetUpgrade.count > 0) {
             document.body.style.backgroundImage = "url('https://unhappyhipsters.com/wp-content/uploads/2019/03/writing-desk-ideas.jpeg')"
-            if (phoneVRs > 0) {
+            if (phoneVRUpgrade.count > 0) {
                 document.body.style.backgroundImage = "url('https://i.ytimg.com/vi/g0E4m1uPpik/maxresdefault.jpg')"
             }
         }

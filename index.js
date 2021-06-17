@@ -111,7 +111,6 @@ var headsetUpgrade = new Upgrade("headset", 1000000, 15625000, 128, indexUpgrade
 var desktopUpgrade = new Upgrade("desktop", 10000000, 78125000, 256, indexUpgrade, 50)
     //Update Score Function:
 var updateScore = function() {
-    totalScore = score;
     scoreEl.textContent = `${score} Points`;
     totalEl.textContent = totalScore;
     modEl.textContent = mod;
@@ -176,40 +175,6 @@ var updateScore = function() {
 //All Functions:
 var resetGame = function() {
     score = 0;
-    mod = 1;
-    rank = "No";
-    time = 1600;
-    resets = 0;
-    phones = 0;
-    consoles = 0;
-    laptops = 0;
-    mice = 0;
-    keyboards = 0;
-    monitors = 0;
-    headsets = 0;
-    desktops = 0;
-    phoneVRs = 0;
-    psvrs = 0;
-    quest2s = 0;
-    vives = 0;
-    indexes = 0;
-    phonePrice = 1000;
-    consolePrice = 5000;
-    laptopPrice = 25000;
-    mousePrice = 125000;
-    keyboardPrice = 625000;
-    monitorPrice = 3125000;
-    headsetPrice = 15625000;
-    desktopPrice = 78125000;
-    phoneVRPrice = 390625000;
-    psvrPrice = 1953125000;
-    quest2Price = 9765625000;
-    vivePrice = 48828125000;
-    indexPrice = 244140625000;
-    upgrades = 0;
-    totalScore = 0;
-
-    cursorUpgrade =
 }
 var saveGame = function() {
     var saveCode = score + "/" + mod + "/" + rank + "/" + resets
@@ -289,117 +254,6 @@ var onModPurchase = function() {
     updateScore();
 };
 
-var onPhonePurchase = function() {
-    if (score >= phonePrice && mod >= 2) {
-        phones++;
-        score -= phonePrice;
-        phonePrice *= 1.07142858
-        phonePrice = Math.round(phonePrice)
-        upgrades++;
-    } else if (score < phonePrice) {
-        alert("You don't have enough money!");
-    } else if (mod < 2) {
-        alert("Your multiplier isn't high enough! You need a multplier of 2!");
-    }
-};
-var onConsolePurchase = function() {
-    if (score >= consolePrice && mod >= 4) {
-        consoles++;
-        score -= consolePrice;
-        consolePrice *= 1.10714287
-        consolePrice = Math.round(consolePrice)
-        upgrades++;
-    } else if (score < consolePrice) {
-        alert("You don't have enough money!");
-    } else if (mod < 4) {
-        alert("Your multiplier isn't high enough! You need a multplier of 4!");
-    }
-    updateScore();
-};
-var onLaptopPurchase = function() {
-    if (score >= laptopPrice && mod >= 16) {
-        laptops++;
-        score -= laptopPrice;
-        laptopPrice *= 1.14285716
-        laptopPrice = Math.round(laptopPrice)
-        upgrades++;
-    } else if (score < laptopPrice) {
-        alert("You don't have enough money!");
-    } else if (mod < 16) {
-        alert("Your multiplier isn't high enough! You need a multplier of 16!");
-    }
-    updateScore();
-};
-var onMousePurchase = function() {
-    if (score >= mousePrice && mod >= 32) {
-        mice++;
-        score -= mousePrice;
-        mousePrice *= 1.46428589
-        mousePrice = Math.round(mousePrice)
-        upgrades++;
-    } else if (score < mousePrice) {
-        alert("You don't have enough money!");
-    } else if (mod < 32) {
-        alert("Your multiplier isn't high enough! You need a multplier of 32!");
-    }
-    updateScore();
-};
-var onKeyboardPurchase = function() {
-    if (score >= keyboardPrice && mod >= 64) {
-        keyboards++;
-        score -= keyboardPrice;
-        keyboardPrice *= 1.50000018
-        keyboardPrice = Math.round(keyboardPrice)
-        upgrades++;
-    } else if (score < keyboardPrice) {
-        alert("You don't have enough money!");
-    } else if (mod < 64) {
-        alert("Your multiplier isn't high enough! You need a multplier of 64!");
-    }
-    updateScore();
-};
-var onMonitorPurchase = function() {
-    if (score >= monitorPrice && mod >= 128) {
-        monitors++;
-        score -= monitorPrice;
-        monitorPrice *= 1.53571447
-        monitorPrice = Math.round(monitorPrice)
-        upgrades++;
-    } else if (score < monitorPrice) {
-        alert("You don't have enough money!");
-    } else if (mod < 128) {
-        alert("Your multiplier isn't high enough! You need a multplier of 128!");
-    }
-    updateScore();
-};
-var onHeadsetPurchase = function() {
-    if (score >= headsetPrice && mod >= 256) {
-        headsets++;
-        score -= headsetPrice;
-        headsetPrice *= 1.57142876
-        headsetPrice = Math.round(headsetPrice)
-        upgrades++;
-    } else if (score < headsetPrice) {
-        alert("You don't have enough money!");
-    } else if (mod < 256) {
-        alert("Your multiplier isn't high enough! You need a multplier of 256!");
-    }
-    updateScore();
-};
-var onDesktopPurchase = function() {
-    if (score >= desktopPrice && mod >= 512) {
-        desktops++;
-        score -= desktopPrice;
-        desktopPrice *= 1.60714305
-        desktopPrice = Math.round(desktopPrice)
-        upgrades++;
-    } else if (score < desktopPrice) {
-        alert("You don't have enough money!");
-    } else if (mod < 512) {
-        alert("Your multiplier isn't high enough! You need a multplier of 512!");
-    }
-    updateScore();
-};
 var onPhoneVRPurchase = function() {
     if (score >= phoneVRPrice && mod >= 1024) {
         phoneVRs++;

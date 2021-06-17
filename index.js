@@ -5,33 +5,8 @@ const scoreEl = document.getElementById("score");
 const modEl = document.getElementById("mod");
 const rankEl = document.getElementById("rank");
 const resetEl = document.getElementById("reset");
-const phoneVREl = document.getElementById("phoneVR");
-const psvrEl = document.getElementById("psvr");
-const quest2El = document.getElementById("quest2");
-const viveEl = document.getElementById("vive");
-const indexEl = document.getElementById("index");
 
 const controllerEl = document.getElementById("controller");
-
-const modPurchaseEl = document.getElementById("modPurchase");
-const modLabelEl = document.getElementById("modLabel");
-const rankPurchaseEl = document.getElementById("rankPurchase");
-const rankLabelEl = document.getElementById("rankLabel")
-
-const phoneVRPurchaseEl = document.getElementById("phoneVRPurchase");
-const phoneVRLabelEl = document.getElementById("phoneVRLabel");
-
-const psvrPurchaseEl = document.getElementById("psvrPurchase");
-const psvrLabelEl = document.getElementById("psvrLabel");
-
-const quest2PurchaseEl = document.getElementById("quest2Purchase");
-const quest2LabelEl = document.getElementById("quest2Label");
-
-const vivePurchaseEl = document.getElementById("vivePurchase");
-const viveLabelEl = document.getElementById("viveLabel");
-
-const indexPurchaseEl = document.getElementById("indexPurchase");
-const indexLabelEl = document.getElementById("indexLabel");
 
 //Upgrade Constructor:
 class Upgrade {
@@ -76,16 +51,6 @@ var mod = 1;
 var rank = "No";
 var time = 1600;
 var resets = 0;
-var phoneVRs = 0;
-var psvrs = 0;
-var quest2s = 0;
-var vives = 0;
-var indexes = 0;
-var phoneVRPrice = 390625000;
-var psvrPrice = 1953125000;
-var quest2Price = 9765625000;
-var vivePrice = 48828125000;
-var indexPrice = 244140625000;
 var upgrades = 0;
 var totalScore = 0;
 
@@ -99,6 +64,11 @@ var keyboardUpgrade = new Upgrade("keyboard", 10000, 625000, 32, viveUpgrade, 20
 var monitorUpgrade = new Upgrade("monitor", 100000, 3125000, 64, indexUpgrade, 50)
 var headsetUpgrade = new Upgrade("headset", 1000000, 15625000, 128, indexUpgrade, 50)
 var desktopUpgrade = new Upgrade("desktop", 10000000, 78125000, 256, indexUpgrade, 50)
+var phoneVRUpgrade = new Upgrade("phoneVR", 100000000, 390625000, 512)
+var psvrUpgrade = new Upgrade("psvr", 100000000, 1953125000, 1024)
+var quest2Upgrade = new Upgrade("quest2", 1000000000, 9765625000, 2048)
+var viveUpgrade = new Upgrade("vive", 10000000000, 48828125000, 4096)
+var indexUpgrade = new Upgrade("index", 100000000000, 244140625000, 8192)
     //Update Score Function:
 var updateScore = function() {
     scoreEl.textContent = `${score} Points`;
@@ -110,11 +80,6 @@ var updateScore = function() {
         let upgrade = allUpgrades[i]
         upgrade.counterEl.textContent = upgrade.count;
     }
-    phoneVREl.textContent = phoneVRs;
-    psvrEl.textContent = psvrs;
-    quest2El.textContent = quest2s;
-    viveEl.textContent = vives;
-    indexEl.textContent = indexes;
     upgradesEl.textContent = upgrades;
     var currentTime = new Date().getTime();
     localStorage.setItem("time", currentTime);
@@ -136,15 +101,6 @@ var updateScore = function() {
         let upgrade = allUpgrades[i]
         upgrade.labelEl.textContent = `Purchase a ${upgrade.name}\n${upgrade.price} points!`;
     }
-    phoneVRLabelEl.textContent =
-        `Purchase a phone VR headset\n${phoneVRPrice} points!`;
-    psvrLabelEl.textContent =
-        `Purchase a PSVR\n${psvrPrice} points!`;
-    quest2LabelEl.textContent =
-        `Purchase an Oculus Quest 2\n${quest2Price} points!`;
-    viveLabelEl.textContent = `Purchase an HTC VIVE\n${vivePrice} points!`;
-    indexLabelEl.textContent =
-        `Purchase a Valve Index\n${indexPrice} points!`;
 
     var scoreDisplay = score
     if (scoreDisplay > 1000000000000000000) {
@@ -207,76 +163,6 @@ var onModPurchase = function() {
     updateScore();
 };
 
-var onPhoneVRPurchase = function() {
-    if (score >= phoneVRPrice && mod >= 1024) {
-        phoneVRs++;
-        score -= phoneVRPrice;
-        phoneVRPrice *= 1.64285734
-        phoneVRPrice = Math.round(phoneVRPrice)
-        upgrades++;
-    } else if (score < phoneVRPrice) {
-        alert("You don't have enough money!");
-    } else if (mod < 1024) {
-        alert("Your multiplier isn't high enough! You need a multplier of 1024!");
-    }
-    updateScore();
-};
-var onPSVRPurchase = function() {
-    if (score >= psvrPrice && mod >= 2048) {
-        psvrs++;
-        score -= psvrPrice;
-        psvrPrice *= 1.67857163
-        psvrPrice = Math.round(psvrPrice)
-        upgrades++;
-    } else if (score < psvrPrice) {
-        alert("You don't have enough money!");
-    } else if (mod < 2048) {
-        alert("Your multiplier isn't high enough! You need a multplier of 2048!");
-    }
-    updateScore();
-};
-var onQuest2Purchase = function() {
-    if (score >= quest2Price && mod >= 4096) {
-        quest2s++;
-        score -= quest2Price;
-        quest2Price *= 1.71428592
-        quest2Price = Math.round(quest2Price)
-        upgrades++;
-    } else if (score < quest2Price) {
-        alert("You don't have enough money!");
-    } else if (mod < 4096) {
-        alert("Your multiplier isn't high enough! You need a multplier of 4096!");
-    }
-    updateScore();
-};
-var onVivePurchase = function() {
-    if (score >= vivePrice && mod >= 8192) {
-        vives++;
-        score -= vivePrice;
-        vivePrice *= 1.75000021
-        vivePrice = Math.round(vivePrice)
-        upgrades++;
-    } else if (score < vivePrice) {
-        alert("You don't have enough money!");
-    } else if (mod < 8192) {
-        alert("Your multiplier isn't high enough! You need a multplier of 8192!");
-    }
-    updateScore();
-};
-var onIndexPurchase = function() {
-    if (score >= indexPrice && mod >= 16384) {
-        indexes++;
-        score -= indexPrice;
-        indexPrice *= 1.7857145
-        indexPrice = Math.round(indexPrice)
-        upgrades++;
-    } else if (score < indexPrice) {
-        alert("You don't have enough money!");
-    } else if (mod < 16384) {
-        alert("Your multiplier isn't high enough! You need a multplier of 16384!");
-    }
-    updateScore();
-};
 var onRankPurchase = function() {
     if (
         score >= 1220703125000 * 5 * 5 * 5 &&
@@ -291,7 +177,7 @@ var onRankPurchase = function() {
         if (
             score >= 1220703125000 * 5 * 5 &&
             mod >= 131072 &&
-            indexes > 0 &&
+            indexUpgrade.count > 0 &&
             rank === "Twitch Streamer"
         ) {
             rank = "Streamer with Donations";
@@ -302,7 +188,6 @@ var onRankPurchase = function() {
             if (
                 score >= 1220703125000 * 5 &&
                 mod >= 65536 &&
-                desktops > 0 &&
                 rank === "Youtuber"
             ) {
                 rank = "Twitch Streamer";
@@ -313,8 +198,7 @@ var onRankPurchase = function() {
                 if (
                     score >= 1220703125000 &&
                     mod >= 32768 &&
-                    laptops > 0 &&
-                    rank === "No"
+                    rank === "None"
                 ) {
                     rank = "Youtuber";
                     score -= 1220703125000;
@@ -334,18 +218,10 @@ var onControllerClick = function() {
     saveGame();
 };
 //All Event Listeners:
-var detectClick = function(el, func) {
-    el.addEventListener("click", func);
-};
 for (var i = 0; i < allUpgrades.length; i++) {
     let upgrade = allUpgrades[i]
     upgrade.purchaseEl.addEventListener("click", upgrade.onPurchase)
 }
-detectClick(phoneVRPurchaseEl, onPhoneVRPurchase);
-detectClick(psvrPurchaseEl, onPSVRPurchase);
-detectClick(quest2PurchaseEl, onQuest2Purchase);
-detectClick(vivePurchaseEl, onVivePurchase);
-detectClick(indexPurchaseEl, onIndexPurchase);
 window.addEventListener("load", updateScore);
 //All Intervals:
 

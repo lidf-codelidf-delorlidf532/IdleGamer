@@ -58,20 +58,20 @@ var upgrades = 0;
 var totalScore = 0;
 
 var allUpgrades = [];
-var cursorUpgrade = new Upgrade("cursor", 1, 100)
-var phoneUpgrade = new Upgrade("phone", 1, 1000, 2, phoneVRUpgrade, 5)
-var consoleUpgrade = new Upgrade("console", 10, 5000, 4, psvrUpgrade, 5)
-var laptopUpgrade = new Upgrade("laptop", 100, 25000, 8, quest2Upgrade, 10)
-var mouseUpgrade = new Upgrade("mouse", 1000, 125000, 16, viveUpgrade, 20)
-var keyboardUpgrade = new Upgrade("keyboard", 10000, 625000, 32, viveUpgrade, 20)
-var monitorUpgrade = new Upgrade("monitor", 100000, 3125000, 64, indexUpgrade, 50)
-var headsetUpgrade = new Upgrade("headset", 1000000, 15625000, 128, indexUpgrade, 50)
-var desktopUpgrade = new Upgrade("desktop", 10000000, 78125000, 256, indexUpgrade, 50)
-var phoneVRUpgrade = new Upgrade("phoneVR", 100000000, 390625000, 512)
-var psvrUpgrade = new Upgrade("psvr", 100000000, 1953125000, 1024)
-var quest2Upgrade = new Upgrade("quest2", 1000000000, 9765625000, 2048)
-var viveUpgrade = new Upgrade("vive", 10000000000, 48828125000, 4096)
-var indexUpgrade = new Upgrade("index", 100000000000, 244140625000, 8192)
+const cursorUpgrade = new Upgrade("cursor", 1, 100)
+const phoneUpgrade = new Upgrade("phone", 1, 1000, 2, phoneVRUpgrade, 5)
+const consoleUpgrade = new Upgrade("console", 10, 5000, 4, psvrUpgrade, 5)
+const laptopUpgrade = new Upgrade("laptop", 100, 25000, 8, quest2Upgrade, 10)
+const mouseUpgrade = new Upgrade("mouse", 1000, 125000, 16, viveUpgrade, 20)
+const keyboardUpgrade = new Upgrade("keyboard", 10000, 625000, 32, viveUpgrade, 20)
+const monitorUpgrade = new Upgrade("monitor", 100000, 3125000, 64, indexUpgrade, 50)
+const headsetUpgrade = new Upgrade("headset", 1000000, 15625000, 128, indexUpgrade, 50)
+const desktopUpgrade = new Upgrade("desktop", 10000000, 78125000, 256, indexUpgrade, 50)
+const phoneVRUpgrade = new Upgrade("phoneVR", 100000000, 390625000, 512)
+const psvrUpgrade = new Upgrade("psvr", 100000000, 1953125000, 1024)
+const quest2Upgrade = new Upgrade("quest2", 1000000000, 9765625000, 2048)
+const viveUpgrade = new Upgrade("vive", 10000000000, 48828125000, 4096)
+const indexUpgrade = new Upgrade("index", 100000000000, 244140625000, 8192)
     //Update Score Function:
 var updateScore = function() {
     scoreEl.textContent = `
@@ -85,6 +85,20 @@ var updateScore = function() {
         let upgrade = allUpgrades[i]
         upgrade.counterEl.textContent = upgrade.count;
     }
+    cursorUpgrade.counterEl.textContent = cursorUpgrade.count;
+    phoneUpgrade.counterEl.textContent = phoneUpgrade.count;
+    consoleUpgrade.counterEl.textContent = consoleUpgrade.count;
+    laptopUpgrade.counterEl.textContent = laptopUpgrade.count;
+    mouseUpgrade.counterEl.textContent = mouseUpgrade.count;
+    keyboardUpgrade.counterEl.textContent = keyboardUpgrade.count;
+    monitorUpgrade.counterEl.textContent = monitorUpgrade.count;
+    headsetUpgrade.counterEl.textContent = headsetUpgrade.count;
+    desktopUpgrade.counterEl.textContent = desktopUpgrade.count;
+    phoneVRUpgrade.counterEl.textContent = phoneVRUpgrade.count;
+    psvrUpgrade.counterEl.textContent = psvrUpgrade.count;
+    quest2Upgrade.counterEl.textContent = quest2Upgrade.count;
+    viveUpgrade.counterEl.textContent = viveUpgrade.count;
+    indexUpgrade.counterEl.textContent = indexUpgrade.count;
     upgradesEl.textContent = upgrades;
     var currentTime = new Date().getTime();
     localStorage.setItem("time", currentTime);
@@ -104,12 +118,48 @@ var updateScore = function() {
         `
                     Purchase a * 2 multiplier\n${ modDisplayPrice }
                     points!`;
-    /*for (var i = 0; i < allUpgrades.length; i++) {
-        let upgrade = allUpgrades[i]
-        upgrade.labelEl.textContent = `
-                    Purchase a ${ upgrade.name }\n${ upgrade.price }
-                    points!`;
-    }*/
+    cursorUpgrade.labelEl.textContent = `
+    Purchase a ${ cursorUpgrade.name }\n${ cursorUpgrade.price }
+    points!`
+    phoneUpgrade.labelEl.textContent = `
+    Purchase a ${ phoneUpgrade.name }\n${ phoneUpgrade.price }
+    points!`
+    consoleUpgrade.labelEl.textContent = `
+    Purchase a ${ consoleUpgrade.name }\n${ consoleUpgrade.price }
+    points!`
+    laptopUpgrade.labelEl.textContent = `
+        Purchase a ${ laptopUpgrade.name }\n${ laptopUpgrade.price }
+        points!`
+    mouseUpgrade.labelEl.textContent = `
+    Purchase a ${ mouseUpgrade.name }\n${ mouseUpgrade.price }
+    points!`
+    keyboardUpgrade.labelEl.textContent = `
+    Purchase a ${ keyboardUpgrade.name }\n${ keyboardUpgrade.price }
+    points!`
+    monitorUpgrade.labelEl.textContent = `
+        Purchase a ${ monitorUpgrade.name }\n${ monitorUpgrade.price }
+        points!`
+    headsetUpgrade.labelEl.textContent = `
+        Purchase a ${ headsetUpgrade.name }\n${ headsetUpgrade.price }
+        points!`
+    desktopUpgrade.labelEl.textContent = `
+        Purchase a ${ desktopUpgrade.name }\n${ desktopUpgrade.price }
+        points!`
+    phoneVRUpgrade.labelEl.textContent = `
+        Purchase a phone VR headset\n${ phoneVRUpgrade.price }
+        points!`
+    psvrUpgrade.labelEl.textContent = `
+        Purchase a PSVR headset\n${ psvrUpgrade.price }
+        points!`
+    quest2Upgrade.labelEl.textContent = `
+        Purchase an Oculus Quest 2\n${ quest2Upgrade.price }
+        points!`
+    viveUpgrade.labelEl.textContent = `
+    Purchase an HTC Vive\n${ viveUpgrade.price }
+    points!`
+    indexUpgrade.labelEl.textContent = `
+    Purchase a Valve Index\n${ indexUpgrade.price }
+    points!`
 
     var scoreDisplay = score
     if (scoreDisplay > 1000000000000000000) {

@@ -526,71 +526,6 @@ var onControllerClick = function() {
     updateScore();
     saveGame();
 };
-var onPhoneClick = function() {
-    if (phoneVRs > 0) {
-        score += 1 * phones * (5 * phoneVRs);
-    } else {
-        score += 1 * phones;
-    }
-    updateScore();
-};
-var onConsoleClick = function() {
-    if (psvrs > 0) {
-        score += 10 * consoles * (5 * psvrs);
-    } else {
-        score += 10 * consoles;
-    }
-    updateScore();
-};
-var onLaptopClick = function() {
-    if (quest2s > 0) {
-        score += 100 * laptops * (10 * quest2s);
-    } else {
-        score += 100 * laptops;
-    }
-    updateScore();
-};
-var onMouseClick = function() {
-    if (vives > 0) {
-        score += 1000 * mice * (20 * vives);
-    } else {
-        score += 1000 * mice;
-    }
-    updateScore();
-};
-var onKeyboardClick = function() {
-    if (vives > 0) {
-        score += 10000 * keyboards * (20 * vives);
-    } else {
-        score += 10000 * keyboards;
-    }
-    updateScore();
-};
-var onMonitorClick = function() {
-    if (indexes > 0) {
-        score += 100000 * monitors * (indexes * 50);
-    } else {
-        score += 100000 * monitors;
-    }
-    updateScore();
-};
-var onHeadsetClick = function() {
-    if (indexes > 0) {
-        score += 1000000 * headsets * (indexes * 50);
-    } else {
-        score += 1000000 * headsets;
-    }
-    updateScore();
-};
-
-var onDesktopClick = function() {
-    if (indexes > 0) {
-        score += 10000000 * desktops * (indexes * 50);
-    } else {
-        score += 10000000 * desktops;
-    }
-    updateScore();
-};
 //All Event Listeners:
 var detectClick = function(el, func) {
     el.addEventListener("click", func);
@@ -627,15 +562,6 @@ var clickAll = function() {
                 let upgrade = allUpgrades[i]
                 upgrade.onClick();
             }
-            onCursorClick();
-            onConsoleClick();
-            onPhoneClick();
-            onLaptopClick();
-            onMouseClick();
-            onKeyboardClick();
-            onMonitorClick();
-            onHeadsetClick();
-            onDesktopClick();
             saveGame();
         }
     }
@@ -678,4 +604,3 @@ logMessage();
 logMessage();
 logMessage();
 logMessage();
-updateScore();

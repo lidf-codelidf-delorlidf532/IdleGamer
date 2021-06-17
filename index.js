@@ -75,17 +75,16 @@ var indexUpgrade = new Upgrade("index", 100000000000, 244140625000, 8192)
     //Update Score Function:
 var updateScore = function() {
     scoreEl.textContent = `
-                    $ { score }
+                    ${ score }
                     Points `;
     totalEl.textContent = totalScore;
     modEl.textContent = mod;
     rankEl.textContent = rank;
     resetEl.textContent = resets;
-    /*for (var i = 0; i < allUpgrades.length; i++) {
+    for (var i = 0; i < allUpgrades.length; i++) {
         let upgrade = allUpgrades[i]
         upgrade.counterEl.textContent = upgrade.count;
-    }*/
-    cursorUpgrade.counterEl.textContent = cursorUpgrade.count;
+    }
     upgradesEl.textContent = upgrades;
     var currentTime = new Date().getTime();
     localStorage.setItem("time", currentTime);
@@ -103,15 +102,15 @@ var updateScore = function() {
     }
     modLabelEl.textContent =
         `
-                    Purchase a * 2 multiplier\ n$ { modDisplayPrice }
+                    Purchase a * 2 multiplier\ n${ modDisplayPrice }
                     points!`;
-    /*for (var i = 0; i < allUpgrades.length; i++) {
+    for (var i = 0; i < allUpgrades.length; i++) {
         let upgrade = allUpgrades[i]
         upgrade.labelEl.textContent = `
-                    Purchase a $ { upgrade.name }\
-                    n$ { upgrade.price }
+                    Purchase a ${ upgrade.name }\
+                    n${ upgrade.price }
                     points!`;
-    } */
+    }
 
     var scoreDisplay = score
     if (scoreDisplay > 1000000000000000000) {
@@ -126,7 +125,7 @@ var updateScore = function() {
         scoreDisplay = Math.round(scoreDisplay / 1000000) + " M"
     }
     document.title = `
-                    Idle Gamer - $ { scoreDisplay }
+                    Idle Gamer - ${ scoreDisplay }
                     Points `
 };
 //All Functions:

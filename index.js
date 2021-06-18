@@ -278,7 +278,7 @@ var detectClick = function(el, func) {
 }
 for (var i = 0; i < allUpgrades.length; i++) {
     let upgrade = allUpgrades[i]
-    detectClick(upgrade, upgrade.onPurchase)
+    detectClick(upgrade.purchaseEl, upgrade.onPurchase)
 }
 window.addEventListener("load", updateScore);
 controllerEl.addEventListener("click", onControllerClick)

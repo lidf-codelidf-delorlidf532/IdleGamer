@@ -273,12 +273,12 @@ var onControllerClick = function() {
     saveGame();
 };
 //All Event Listeners:
-var detectClick = function(upgrade) {
-    upgrade.purchaseEl.addEventListener("click", upgrade.onPurchase())
+var detectClick = function(el, func) {
+    el.addEventListener("click", func)
 }
 for (var i = 0; i < allUpgrades.length; i++) {
     let upgrade = allUpgrades[i]
-    detectClick(upgrade)
+    detectClick(upgrade, upgrade.onPurchase)
 }
 window.addEventListener("load", updateScore);
 controllerEl.addEventListener("click", onControllerClick)

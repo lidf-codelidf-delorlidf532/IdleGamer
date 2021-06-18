@@ -282,7 +282,7 @@ for (var i = 0; i < allUpgrades.length; i++) {
 }
 window.addEventListener("load", updateScore);
 controllerEl.addEventListener("click", onControllerClick)
-detectClick(cursorUpgrade)
+cursorUpgrade.purchaseEl.addEventListener("click", cursorUpgrade.onPurchase)
     //All Intervals:
 
 

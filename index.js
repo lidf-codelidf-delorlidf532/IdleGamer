@@ -274,7 +274,7 @@ var onControllerClick = function() {
 };
 //All Event Listeners:
 var detectClick = function(upgrade) {
-    upgrade.purchaseEl.addEventListener("click", upgrade.onPurchase)
+    upgrade.purchaseEl.addEventListener("click", upgrade.onPurchase())
 }
 for (var i = 0; i < allUpgrades.length; i++) {
     let upgrade = allUpgrades[i]
@@ -282,7 +282,6 @@ for (var i = 0; i < allUpgrades.length; i++) {
 }
 window.addEventListener("load", updateScore);
 controllerEl.addEventListener("click", onControllerClick)
-cursorUpgrade.purchaseEl.addEventListener("click", cursorUpgrade.onPurchase)
     //All Intervals:
 
 

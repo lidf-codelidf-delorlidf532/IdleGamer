@@ -5,6 +5,9 @@
         --wrapperWidth: 15vw;
         --wrapperHeight: 50vw;
         --imageWidth: 200px;
+        --labelLeft: 100px;
+        --labelTop: -100px;
+        --scoreTop: 0%;
     }
     
     @media only screen and (max-width: 600px) {
@@ -13,10 +16,9 @@
             --wrapperWidth: 20vw;
             --wrapperHeight: 75vw;
             --imageWidth: 100px;
-        }
-        #score {
-            left: 50%;
-            top: 10%;
+            --labelLeft: 50px;
+            --labelTop: -50px;
+            --scoreTop: 10%;
         }
     }
     
@@ -72,7 +74,7 @@
     
     .purchase {
         position: relative;
-        width: calc(var(--imageWidth)/2);
+        width: calc(var(--imageWidth)/1.75);
         transform-style: preserve-3d;
         animation: tilt 2s infinite;
     }
@@ -80,8 +82,9 @@
     .label {
         position: relative;
         width: 75px;
-        left: 100px;
-        top: -100px;
+        left: var(--labelLeft);
+        ;
+        top: var(--labelTop);
         font-size: var(--wrapperFontSize);
         letter-spacing: 1px;
         line-height: 12px;
@@ -132,7 +135,7 @@
     #score {
         position: absolute;
         left: 50%;
-        top: 0%;
+        top: var(--scoreTop);
         transform: translateX(-50%);
         width: 33.33%;
         height: auto;

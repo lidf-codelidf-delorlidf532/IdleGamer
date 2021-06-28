@@ -9,7 +9,7 @@
     
     @media only screen and (max-width: 600px) {
          :root {
-            --wrapperFontSize: 8px;
+            --wrapperFontSize: 6px;
             --wrapperWidth: 20vw;
             --wrapperHeight: 75vw;
             --imageWidth: 100px;
@@ -41,7 +41,7 @@
     }
     
     img {
-        width: 200px;
+        width: var(--imageWidth);
         height: auto;
         filter: drop-shadow(2px 2px 1px rgb(64, 64, 64));
         transition: 1s;
@@ -82,7 +82,7 @@
         width: 75px;
         left: 100px;
         top: -100px;
-        font-size: 10px;
+        font-size: var(--wrapperFontSize);
         letter-spacing: 1px;
         line-height: 12px;
     }

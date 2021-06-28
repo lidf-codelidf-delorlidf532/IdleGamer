@@ -1,7 +1,7 @@
     @import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
     @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
      :root {
-        --wrapperFontSize: 16px;
+        --wrapperFontSize: 12px;
         --wrapperWidth: 15vw;
         --wrapperHeight: 50vw;
         --imageWidth: 200px;

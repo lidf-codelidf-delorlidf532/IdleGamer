@@ -72,7 +72,7 @@
     
     .purchase {
         position: relative;
-        width: 100px;
+        width: calc(var(--imageWidth)/2);
         transform-style: preserve-3d;
         animation: tilt 2s infinite;
     }

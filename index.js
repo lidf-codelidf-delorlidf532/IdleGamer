@@ -81,24 +81,25 @@ var updateScore = function() {
     modEl.textContent = mod;
     rankEl.textContent = rank;
     resetEl.textContent = resets;
-    foreach(upgrade of upgrades) {
-            upgrade.counterEl.textContent = upgrade.count;
-            upgrade.labelEl.textContent = `Purchase a ${upgrade.name}\n${upgrade.price} points`
-        }
-        /*cursorUpgrade.counterEl.textContent = cursorUpgrade.count;
-        phoneUpgrade.counterEl.textContent = phoneUpgrade.count;
-        consoleUpgrade.counterEl.textContent = consoleUpgrade.count;
-        laptopUpgrade.counterEl.textContent = laptopUpgrade.count;
-        mouseUpgrade.counterEl.textContent = mouseUpgrade.count;
-        keyboardUpgrade.counterEl.textContent = keyboardUpgrade.count;
-        monitorUpgrade.counterEl.textContent = monitorUpgrade.count;
-        headsetUpgrade.counterEl.textContent = headsetUpgrade.count;
-        desktopUpgrade.counterEl.textContent = desktopUpgrade.count;
-        phoneVRUpgrade.counterEl.textContent = phoneVRUpgrade.count;
-        psvrUpgrade.counterEl.textContent = psvrUpgrade.count;
-        quest2Upgrade.counterEl.textContent = quest2Upgrade.count;
-        viveUpgrade.counterEl.textContent = viveUpgrade.count;
-        indexUpgrade.counterEl.textContent = indexUpgrade.count; */
+    for (let i = 0; i < upgrades.length; i++) {
+        upgrade = upgrades[i]
+        upgrade.counterEl.textContent = upgrade.count;
+        upgrade.labelEl.textContent = `Purchase a ${upgrade.name}\n${upgrade.price} points`
+    }
+    /*cursorUpgrade.counterEl.textContent = cursorUpgrade.count;
+    phoneUpgrade.counterEl.textContent = phoneUpgrade.count;
+    consoleUpgrade.counterEl.textContent = consoleUpgrade.count;
+    laptopUpgrade.counterEl.textContent = laptopUpgrade.count;
+    mouseUpgrade.counterEl.textContent = mouseUpgrade.count;
+    keyboardUpgrade.counterEl.textContent = keyboardUpgrade.count;
+    monitorUpgrade.counterEl.textContent = monitorUpgrade.count;
+    headsetUpgrade.counterEl.textContent = headsetUpgrade.count;
+    desktopUpgrade.counterEl.textContent = desktopUpgrade.count;
+    phoneVRUpgrade.counterEl.textContent = phoneVRUpgrade.count;
+    psvrUpgrade.counterEl.textContent = psvrUpgrade.count;
+    quest2Upgrade.counterEl.textContent = quest2Upgrade.count;
+    viveUpgrade.counterEl.textContent = viveUpgrade.count;
+    indexUpgrade.counterEl.textContent = indexUpgrade.count; */
     upgradesEl.textContent = upgrades;
     var currentTime = new Date().getTime();
     localStorage.setItem("time", currentTime);

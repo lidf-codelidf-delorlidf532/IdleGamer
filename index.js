@@ -82,7 +82,7 @@ var updateScore = function() {
     rankEl.textContent = rank;
     resetEl.textContent = resets;
     for (let i = 0; i < allUpgrades.length; i++) {
-        upgrade = allUpgrades
+        upgrade = allUpgrades[i]
         upgrade.counterEl.textContent = upgrade.count;
         upgrade.labelEl.textContent = `Purchase a ${upgrade.name}\n${upgrade.price} points`
     }

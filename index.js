@@ -81,7 +81,12 @@ var updateScore = function() {
     modEl.textContent = mod;
     rankEl.textContent = rank;
     resetEl.textContent = resets;
-    cursorUpgrade.counterEl.textContent = cursorUpgrade.count;
+    for (let i = 0; i < allUpgrades.length; i++) {
+        upgrade = allUpgrades
+        upgrade.counterEl.textContent = upgrade.count;
+        upgrade.labelEl.textContent = `Purchase a ${upgrade.name}\n${upgrade.price} points`
+    }
+    /*cursorUpgrade.counterEl.textContent = cursorUpgrade.count;
     phoneUpgrade.counterEl.textContent = phoneUpgrade.count;
     consoleUpgrade.counterEl.textContent = consoleUpgrade.count;
     laptopUpgrade.counterEl.textContent = laptopUpgrade.count;
@@ -94,7 +99,7 @@ var updateScore = function() {
     psvrUpgrade.counterEl.textContent = psvrUpgrade.count;
     quest2Upgrade.counterEl.textContent = quest2Upgrade.count;
     viveUpgrade.counterEl.textContent = viveUpgrade.count;
-    indexUpgrade.counterEl.textContent = indexUpgrade.count;
+    indexUpgrade.counterEl.textContent = indexUpgrade.count; */
     upgradesEl.textContent = upgrades;
     var currentTime = new Date().getTime();
     localStorage.setItem("time", currentTime);
@@ -114,7 +119,7 @@ var updateScore = function() {
         `
                     Purchase a * 2 multiplier\n${ modDisplayPrice }
                     points!`;
-    cursorUpgrade.labelEl.textContent = `
+    /*cursorUpgrade.labelEl.textContent = `
     Purchase a ${ cursorUpgrade.name }\n${ cursorUpgrade.price }
     points!`
     phoneUpgrade.labelEl.textContent = `
@@ -155,7 +160,7 @@ var updateScore = function() {
     points!`
     indexUpgrade.labelEl.textContent = `
     Purchase a Valve Index\n${ indexUpgrade.price }
-    points!`
+    points!`*/
 
     var scoreDisplay = score
     if (scoreDisplay > 1000000000000000000) {
